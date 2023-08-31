@@ -32,7 +32,42 @@ export default {
                 // genre: " ",
             },
         };
+
     },
 
-};
+ methods: {
+        async reserveBook(bookId) {
+            try {
+                const response = await fetch(
+                    `https://reimagined-goldfish-4j7g454xggrx257px-3000.app.github.dev/books/${bookId}/reserve`,
+                    {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ reservedBy: 'userTwo' }), 
+                    }
+                );
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                const data = await response.json();
+                console.log(data.message);
+                this.$emit('update-books');
+            } catch (error) {
+                console.error(error);
+            }
+        },
+    },
+
+
+
+};      
+
+    
+    
+
+
 </script>
