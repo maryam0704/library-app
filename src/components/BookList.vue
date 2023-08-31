@@ -49,9 +49,9 @@ export default {
             }
         },
     },
-    // mounted() {
-    //     this.fetchBooks();
-    // },
+    mounted() {
+        this.fetchBooks();
+    },
 };
 </script>
 
