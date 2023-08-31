@@ -1,5 +1,4 @@
 
-
 <template>
     <div id="app">
         <h1>Library App</h1>
@@ -50,9 +49,9 @@ export default {
             }
         },
     },
-    mounted() {
-        this.fetchBooks();
-    },
+    // mounted() {
+    //     this.fetchBooks();
+    // },
 };
 </script>
 
