@@ -1,5 +1,7 @@
 <template>
   <div id="app">
+    <h1>Library App</h1>
+
     <header>
       <nav>
         <router-link to="/">Home</router-link>
@@ -14,12 +16,43 @@
     </main>
 
 
+  
+    <UserList :allUsers="allUsers" @userSelected="loginUser" />
+     <!-- <AdminPage />  -->
+    <!-- <UserOne />
+    <UserTwo />
+    <Guest /> -->
   </div>
 </template>
 
 <script>
+import { useloginStore } from "@/store/loginStore";
+import UserList from "@/components/UserList.vue";
+// import AdminPage from "@/components/AdminPage.vue";
+// import UserOne from "@/components/UserOne.vue";
+// import UserTwo from "@/components/UserTwo.vue";
+// import Guest from "@/components/Guest.vue";
+
 export default {
-  name: 'App',
+  name: "App",
+  components: {
+    UserList,
+    // AdminPage,    // UserOne,
+    // UserTwo,
+    // Guest,
+  },
+  setup() {
+    const allUsers = ["admin", "userOne", "userTwo"];
+    const loginStore = useloginStore();
+
+    const loginUser = (user) => {
+      loginStore.authenticate(user);
+    };
+    return {
+      allUsers,
+      loginUser,
+    };
+  },
 };
 </script>
 
