@@ -1,7 +1,7 @@
 <template>
     <div>
-        <h1>Library Catalog</h1>
-       <button @click="fetchBooks">browse Books</button>
+        <h1></h1>
+       <!-- <button @click="fetchBooks">browse Books</button> -->
         <BookList :books="books" />
     </div>
 </template>

@@ -8,11 +8,7 @@ import AdminPageView from "@/views/AdminPageView.vue";
 // Vue.use(VueRouter);
 
 const routes = [
-  {
-    path: "/",
-   
-    component: MainView
-  },
+  { path: "/", component: MainView},
   { path: "/user", component: UserPageView },
   { path: "/admin", component: AdminPageView },
 ];

@@ -7,18 +7,22 @@
             <p>{{ book.author }}</p>
             <p v-if="book.isReserved">Reserved by: {{ book.reservedBy }}</p>
             <p v-else>Available</p>
+
             <button @click="reserveBook(book._id)" v-if="!book.isReserved">Reserve</button>
         </div>
     </div>
 </template>
 
 <script>
+import { useloginStore } from '@/store/loginStore';
+
 export default {
     data() {
         return {
             books: [],
         };
     },
+
     methods: {
         async fetchBooks() {
             try {
@@ -29,31 +33,35 @@ export default {
                 console.error("An error occurred while fetching books:", error);
             }
         },
-        async reserveBook(bookId) {
-            try {
-                const response = await fetch(`https://reimagined-goldfish-4j7g454xggrx257px-3000.app.github.dev/books/${bookId}/reserve`, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                   //need to make it work with the user name from database
-                    body: JSON.stringify({ reservedBy: "User123" }), 
-                });
 
-                if (response.status === 200) {
-                    console.log("Book reserved successfully");
-                    this.fetchBooks(); 
+        async reserveBook(bookId) {
+            const loginStore = useloginStore();
+            if (loginStore.isAuthenticated) {
+                try {
+                    const response = await fetch(`https://reimagined-goldfish-4j7g454xggrx257px-3000.app.github.dev/books/${bookId}/reserve`, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        // need to make it work with the user name from the database
+                        body: JSON.stringify({ reservedBy: loginStore.authenticatedUser }),
+                    });
+
+                    if (response.status === 200) {
+                        console.log("Book reserved successfully");
+                        this.fetchBooks();
+                    }
+                } catch (error) {
+                    console.error("An error occurred while reserving the book:", error);
                 }
-            } catch (error) {
-                console.error("An error occurred while reserving the book:", error);
+            } else {
+                console.log("User is not authenticated. Please log in to reserve a book.");
             }
         },
     },
+
     mounted() {
         this.fetchBooks();
     },
 };
 </script>
-
-
-
