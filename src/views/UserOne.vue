@@ -1,30 +1,23 @@
 <template>
     <div>
-        <h1>User List</h1>
-        <ul>
-            <li v-for="user in users" :key="user.id">
-                <button @click="navigateToUser(user)">Select {{ user.name }}</button>
-            </li>
-        </ul>
+        <UserBorrowedBooks v-if="loginStore.isAuthenticated" :user="loginStore.authenticatedUser" />
     </div>
 </template>
 
 <script>
+import { useloginStore } from "@/store/loginStore";
+import UserBorrowedBooks from "@/components/UserBorrowedBooks.vue";
+
 export default {
-    data() {
+    components: {
+        UserBorrowedBooks
+    },
+    setup() {
+        const loginStore = useloginStore();
+
         return {
-            users: [
-                { id: 1, name: "UserOne" },
-                { id: 2, name: "UserTwo" },
-                // Add more users as needed
-            ],
+            loginStore
         };
-    },
-    methods: {
-        navigateToUser(user) {
-            // Use router.push to navigate to the UserOne route (or other routes) based on the selected user
-            this.$router.push({ name: user.name });
-        },
-    },
+    }
 };
 </script>
