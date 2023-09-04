@@ -1,16 +1,16 @@
 
 <template>
-    <div>
-        <h2>Your Borrowed Books</h2>
+    <div class="borrowed-books">
+        <h2 class="section-title">Your Borrowed Books</h2>
         <ul>
-            <li v-for="book in borrowedBooks" :key="book.title">
-                {{ book.title }} by {{ book.reservedBy }}
+            <li v-for="book in borrowedBooks" :key="book.title" class="book-item">
+                {{ book.title }} by <strong>{{ book.reservedBy }}</strong>
             </li>
         </ul>
 
-        <h2 v-if="isAdmin">all the borrowed books</h2>
+        <h2 v-if="isAdmin"  class="section-title">all the borrowed books</h2>
         <ul v-if="isAdmin">
-            <li v-for="book in adminBorrowedBooks" :key="book.title">
+            <li v-for="book in adminBorrowedBooks" :key="book.title"  class="book-item">
                 {{ book.title }} by {{ book.reservedBy }}
             </li>
         </ul>
@@ -79,3 +79,38 @@ export default {
     },
 };
 </script>
+<style scoped>
+.borrowed-books {
+    margin-top: 20px;
+    background-color: rgba(0, 0, 0, 0.413);
+    color: bisque;
+    width: 40%;
+    margin: 0 auto;
+    padding: 35px;
+    letter-spacing: 1.5px;
+    word-spacing: 2px;
+}
+.section-title {
+    font-size: 35px;
+    margin-bottom: 10px;
+}
+
+.book-item {
+   
+    color: rgb(255, 255, 255);
+    background-color: rgba(131, 129, 129, 0.527);
+    font-size:2rem;
+    margin-bottom: 5px;
+    padding-left: 15px;
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-position: 0 50%;
+    list-style: none;
+    border: 2px solid rgba(255, 255, 255, 0.698);
+    border-radius: 25px;
+    padding: 10px;
+    width: 70%;
+    margin: 15px auto;
+   ;
+}
+</style>
