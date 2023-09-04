@@ -1,10 +1,12 @@
+
 <template>
     <div>
         <label for="user">Select a user:</label>
         <select v-model="selectedUser" id="user">
             <option v-for="user in allUsers" :key="user">{{ user }}</option>
         </select>
-        <button @click="selectUser">Select User</button>
+      
+        <button @click="selectUser">submit</button>
     </div>
 </template>
 
@@ -21,7 +23,9 @@ export default {
     methods: {
         selectUser() {
             this.$emit("userSelected", this.selectedUser);
+            console.log("Selected user:", this.selectedUser);
         },
     },
+  
 };
 </script>
