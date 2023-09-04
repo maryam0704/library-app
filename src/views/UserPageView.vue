@@ -30,7 +30,9 @@ export default {
 
      computed: {
         userDisplayName() {
-            const loginStore = useloginStore();
+             const loginStore = useloginStore();
+            // using ternary operator
+            // instead of if/else
             return loginStore.isAuthenticated ? loginStore.authenticatedUser : 'Guest';
         },
     },
@@ -68,3 +70,58 @@ methods: {
     },
 };
 </script>
+<style  scoped lang="scss">
+
+
+/* Style the entire component */
+div {
+    padding: 20px;
+    text-align: center;
+}
+
+
+
+/* Style the welcome message */
+h1 {
+    font-size: 36px;
+    margin-top: 20px;
+}
+
+/* Style the "Browse Books" button */
+button {
+    background-color: #0078d4;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #005a9e;
+}
+
+/* Style the UserList component */
+.user-list {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+/* Style the UserList component items */
+.user-list button {
+    background-color: #0078d4;
+    color: white;
+    border: 2px solid black;
+    padding: 5px 10px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.user-list button:hover {
+    background-color: #005a9e;
+}
+</style>
