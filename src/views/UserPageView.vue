@@ -3,7 +3,7 @@
     <div>
         <UserList :allUsers="allUsers" @userSelected="loginUser" />
 
-        <h1>Welcome user </h1>
+        <h1>Welcome  {{ authenticatedUser }} </h1>
         <button @click="fetchBooks">Browse Books</button>
         <BookList v-if="books.length > 0" :books="books" :isUser="true" @update-books="fetchBooks" />
     </div>
@@ -24,6 +24,7 @@ export default {
         return {
             allUsers: ["admin", "userOne"],
             books: [],
+             authenticatedUser: ""
         };
     },
 methods: {
@@ -46,7 +47,8 @@ methods: {
             try {
                 await loginStore.authenticate(user);
                 if (loginStore.isAuthenticated) {
-                
+                    // to get the logged in user name on the page
+                 this.authenticatedUser = loginStore.authenticatedUser;
                     console.log(`Logged in as ${user}`);
                   
                 } else {
