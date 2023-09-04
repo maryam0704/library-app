@@ -13,7 +13,7 @@ export const useloginStore = defineStore("loginStore", {
           `https://reimagined-goldfish-4j7g454xggrx257px-3000.app.github.dev/api/users/${user}`
         );
 
-      
+      console.log("response", response);
 
         if (response.ok) {
           this.authenticatedUser = user;
@@ -21,18 +21,19 @@ export const useloginStore = defineStore("loginStore", {
 
           if (user === "admin") {
             this.isAdmin = true;
+            console.log("isAdmin", this.isAdmin);
           } else if (user === "userOne") {
             this.isAdmin = false;
           }
         }
-        else
-        {
+        // else
+        // {
         
-          console.error("Authentication failed: Invalid username ");
-          this.authenticatedUser = "";
-          this.isAuthenticated = false;
-          this.isAdmin = false;
-        }
+        //   console.error("Authentication failed: Invalid username ");
+        //   this.authenticatedUser = "";
+        //   this.isAuthenticated = false;
+        //   this.isAdmin = false;
+        // }
        }
       catch (error) {
         console.error("Authentication failed:", error);
