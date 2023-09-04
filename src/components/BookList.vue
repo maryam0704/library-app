@@ -2,7 +2,8 @@
 <template>
     <div id="app">
         <h1>Library App</h1>
-        <div v-for="book in books" :key="book._id">
+        <div class="book">
+        <div v-for="book in books" :key="book._id" class="books"  >
             <h2>{{ book.title }}</h2>
             <p>{{ book.author }}</p>
             <p v-if="book.isReserved">Reserved by: {{ book.reservedBy }}</p>
@@ -11,7 +12,7 @@
             <button @click="reserveBook(book._id)" v-if="!book.isReserved">Reserve</button>
                <DeleteBook :bookId="book._id" @bookDeleted= "handleBookDeleted" />
         </div>
-    
+    </div>
     </div>
 </template>
 
@@ -84,3 +85,62 @@ export default {
     },
 };
 </script> 
+
+<style scoped>
+#app {
+    max-width: 1050px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+ .books {
+   font-size: 20px;
+    background-color: #1e1d1d72;
+      border: 2px solid black;
+    /* border: 2px solid black; */
+    /* background-color: #f9f9f9; */
+     padding: 10px; 
+    border: 1px solid  
+
+} 
+.book{
+    
+    display: grid;
+    /* grid-template-columns: 1fr 1fr 1fr; */
+   /* grid-template-columns: minmax(800px, 500px) ; */
+/* grid-template-rows:1fr 1fr 1fr; */
+      grid-gap: 10px;
+     grid-template-columns: repeat(3, 1fr); 
+}
+/* h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 20px;
+    margin: 0;
+}
+
+p {
+    margin: 5px 0;
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+p.reserved {
+    color: #ff0000;
+} */
+</style>
