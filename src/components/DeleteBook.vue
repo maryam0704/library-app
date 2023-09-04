@@ -1,7 +1,7 @@
 <template>
     <div>
         <h2>Delete Book</h2>
-        <button @click="deleteBook" v-if="isAdmin" >Delete Book</button>
+        <button @click="deleteBook" v-if="isAdmin">Delete Book</button>
         <div v-if="message">{{ message }}</div>
     </div>
 </template>
@@ -11,15 +11,16 @@ import { useloginStore } from '@/store/loginStore';
 
 export default {
     props: {
-         type: Object,
-       
+        bookId: {
+            type: Object,
+            required: true,
+        },
     },
     data() {
         return {
             message: "",
         };
     },
-
     computed: {
         isAdmin() {
             const loginStore = useloginStore();
@@ -31,22 +32,20 @@ export default {
             const loginStore = useloginStore();
             if (loginStore.isAuthenticated) {
                 try {
-                    const response = await fetch(
-                        `https://reimagined-goldfish-4j7g454xggrx257px-3000.app.github.dev/books/${this.bookId}`,
-                        {
-                            method: "DELETE",
-                            headers: {
-                                "Content-Type": "application/json",
-                            },
-                        }
-                    );
+                    const response = await fetch(`https://reimagined-goldfish-4j7g454xggrx257px-3000.app.github.dev/books/${this.bookId}`, {
+                        method: "DELETE",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                    });
 
                     if (response.status === 204) {
-                       
+                      
                         this.message = "Book deleted successfully.";
                         this.$emit("bookDeleted");
+                        //  this.books = this.books.filter((book) => book._id !== this.bookId);
                     } else if (response.status === 404) {
-                       
+                     
                         this.message = "Book not found.";
                     } else {
                         this.message = "Failed to delete book.";
