@@ -4,10 +4,10 @@
 
     <header>
       <nav>
-        <router-link to="/">Home</router-link>
+        <!-- <router-link to="/">Home</router-link> -->
         <router-link to="/user">User Page</router-link>
         <router-link to="/admin">Admin Page</router-link>
-        <router-link to="/userOne">User One</router-link>
+        <router-link to="/userOne">borrowed books</router-link>
       </nav>
     </header>
 
