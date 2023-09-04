@@ -19,7 +19,9 @@
   <br>              <input v-model="newBook.genre" id="genre" class="form-input" required />
 <br>
                 <button  class="add-button" >Add New Book</button>
+                 
             </form>
+             <div v-if="message">{{ message }}</div>
             <button @click="logout"  class="logout-button" >Logout</button>
         </div>
         <div  class="not-admin" v-else>
@@ -40,7 +42,7 @@ export default {
             author: "",
             genre: "",
         };
-
+     
         const addBook = async () => {
             try {
                 const response = await fetch(
@@ -50,23 +52,31 @@ export default {
                         headers: {
                             "Content-Type": "application/json",
                         },
+                  
                         body: JSON.stringify(newBook),
+                        
                     }
+                   
                 );
 
                 if (!response.ok) {
                     throw new Error("Network response was not ok");
                 }
-
+                console.log("book added successfully");
+              
                 newBook.title = "";
                 newBook.author = "";
                 newBook.genre = "";
 
                 const data = await response.json();
+               
                 console.log(data);
+
                 fetchBooks();
+              
             } catch (error) {
                 console.error(error);
+                
             }
         };
 
@@ -92,11 +102,13 @@ export default {
         };
 
         return {
+         
             store,
             newBook,
             addBook,
             fetchBooks,
             logout,
+            
         };
     },
 };
