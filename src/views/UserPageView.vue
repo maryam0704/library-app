@@ -1,47 +1,32 @@
+
 <template>
     <div>
-        <h1>Welcome, User!</h1>
-       <button @click="fetchBooks">browse Books</button>
-        <BookList v-if="books.length > 0" :books="books" :isUser="true" @update-books="fetchBooks" />
+        <UserList :allUsers="allUsers" @userSelected="loginUser" />
 
+        <h1>Welcome user </h1>
+        <button @click="fetchBooks">Browse Books</button>
+        <BookList v-if="books.length > 0" :books="books" :isUser="true" @update-books="fetchBooks" />
     </div>
 </template>
 
+
 <script>
 import BookList from '@/components/BookList.vue';
+import { useloginStore } from "@/store/loginStore";
+import UserList from "@/components/UserList.vue";
 
 export default {
     components: {
         BookList,
+        UserList,
     },
     data() {
         return {
+            allUsers: ["admin", "userOne"],
             books: [],
         };
     },
-    
-    //  methods: {
-    //     async fetchBooks() {
-    //         try {
-    //             const response = await fetch('https://reimagined-goldfish-4j7g454xggrx257px-3000.app.github.dev/books');
-    //             if (!response.ok) {
-    //                 throw new Error('Network response was not ok');
-    //             }
-    //             let data;
-    //             try {
-    //                 data = await response.json();
-    //             } catch (error) {
-    //             //    console.log('Response is not valid JSON');
-    //                 console.error('Response is not valid JSON:', response);
-    //                 return;
-    //             }
-    //             this.books = data;
-    //         } catch (error) {
-    //             console.error(error);
-    //         }
-    //     },
-    // },
-    methods: {
+methods: {
         async fetchBooks() {
             try {
                 const response = await fetch('https://reimagined-goldfish-4j7g454xggrx257px-3000.app.github.dev/books');
@@ -52,16 +37,25 @@ export default {
                 this.books = data;
             } catch (error) {
                 console.error('An error occurred while fetching books:', error);
+                this.books = []; 
+            }
+        },
+        async loginUser(user) {
+            const loginStore = useloginStore();
+
+            try {
+                await loginStore.authenticate(user);
+                if (loginStore.isAuthenticated) {
+                
+                    console.log(`Logged in as ${user}`);
+                  
+                } else {
+                    console.error(`Login failed for user ${user}`);
+                }
+            } catch (error) {
+                console.error(`An error occurred while logging in as ${user}:`, error);
             }
         },
     },
-
-    
 };
 </script>
-<style scoped>
-.unlike {
-  background-color: red;
-}
-
-</style>
