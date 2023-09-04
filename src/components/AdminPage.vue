@@ -21,7 +21,7 @@
                 <button  class="add-button" >Add New Book</button>
                  
             </form>
-             <div v-if="message">{{ message }}</div>
+             <!-- <div v-if="message">{{ message }}</div> -->
             <button @click="logout"  class="logout-button" >Logout</button>
         </div>
         <div  class="not-admin" v-else>
@@ -32,17 +32,19 @@
 
 <script>
 import { useloginStore } from "@/store/loginStore";
+import { ref } from 'vue';
+
 
 export default {
     name: "AdminPage",
     setup() {
         const store = useloginStore();
-        const newBook = {
+        const newBook = ref({
             title: "",
             author: "",
             genre: "",
-        };
-     
+        });
+     let message = ref("");
         const addBook = async () => {
             try {
                 const response = await fetch(
@@ -52,27 +54,35 @@ export default {
                         headers: {
                             "Content-Type": "application/json",
                         },
-                  
+
                         body: JSON.stringify(newBook),
                         
                     }
-                   
+                    
                 );
-
+             
                 if (!response.ok) {
                     throw new Error("Network response was not ok");
                 }
-                console.log("book added successfully");
+               
               
-                newBook.title = "";
-                newBook.author = "";
-                newBook.genre = "";
-
+                // newBook.title = "";
+                // newBook.author = "";
+                // newBook.genre = "";
+                // message = "Book added successfully";
                 const data = await response.json();
                
+                console.log("book added successfully");
+                 newBook.value.title = "";
+                newBook.value.author = "";
+                newBook.value.genre = "";
+                console.log("clear input fields");
+
                 console.log(data);
 
                 fetchBooks();
+               
+
               
             } catch (error) {
                 console.error(error);
@@ -108,6 +118,7 @@ export default {
             addBook,
             fetchBooks,
             logout,
+            message,
             
         };
     },
