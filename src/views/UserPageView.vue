@@ -3,7 +3,7 @@
     <div>
         <UserList :allUsers="allUsers" @userSelected="loginUser" />
 
-        <h1>Welcome  {{ authenticatedUser }} </h1>
+        <h1>Welcome  {{ userDisplayName }} </h1>
         <button @click="fetchBooks">Browse Books</button>
         <BookList v-if="books.length > 0" :books="books" :isUser="true" @update-books="fetchBooks" />
     </div>
@@ -24,8 +24,15 @@ export default {
         return {
             allUsers: ["admin", "userOne"],
             books: [],
-             authenticatedUser: ""
+             
         };
+    },
+
+     computed: {
+        userDisplayName() {
+            const loginStore = useloginStore();
+            return loginStore.isAuthenticated ? loginStore.authenticatedUser : 'Guest';
+        },
     },
 methods: {
         async fetchBooks() {
