@@ -73,7 +73,7 @@ methods: {
 <style  scoped lang="scss">
 
 
-/* Style the entire component */
+
 div {
     padding: 20px;
     text-align: center;
@@ -81,13 +81,13 @@ div {
 
 
 
-/* Style the welcome message */
+
 h1 {
     font-size: 36px;
     margin-top: 20px;
 }
 
-/* Style the "Browse Books" button */
+
 button {
     background-color: #0078d4;
     color: white;
@@ -102,7 +102,7 @@ button:hover {
     background-color: #005a9e;
 }
 
-/* Style the UserList component */
+
 .user-list {
     background-color: rgba(0, 0, 0, 0.7);
     padding: 10px;
@@ -110,7 +110,7 @@ button:hover {
     margin-top: 20px;
 }
 
-/* Style the UserList component items */
+
 .user-list button {
     background-color: #0078d4;
     color: white;
