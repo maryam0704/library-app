@@ -51,20 +51,35 @@ describe("BookList.vue", () => {
       expect(wrapper.find("h2").text()).toBe("Book 1");
     });
 
-    it("renders course author when passed", async () => {
-      const book = [
-        { _id: 1, title: "Book 1", author: "Author 1", isReserved: false },
-      ];
-      const wrapper = shallowMount(BookList, {
-        propsData: { book },
+      it("renders course author when passed", async () => {
+        const book = [
+          { _id: 1, title: "Book 1", author: "Author 1", isReserved: false },
+        ];
+        const wrapper = shallowMount(BookList, {
+          propsData: { book },
+        });
+
+        wrapper.setData({ books: book });
+        await wrapper.vm.$nextTick();
+
+        expect(wrapper.find("p").text()).toBe("Author 1");
       });
 
-      wrapper.setData({ books: book });
-      await wrapper.vm.$nextTick();
+      it("displays the delete button when user is not admin", async () => {
+        const book = {
+          title: "abc",
+          author: "John Doe",
+          id: 1,
+        };
+        const wrapper = shallowMount(BookList, {
+          propsData: { book },
+        });
+        expect(wrapper.find("button").exists()).toBe(false);
+        expect(wrapper.find("button").text()).toBe("");
 
-      expect(wrapper.find("p").text()).toBe("Author 1");
-    });
+        await wrapper.find("button").trigger("click");
 
-    
-   
+        expect(wrapper.find("button").exists()).toBe(true);
+        expect(wrapper.find("button").text()).toBe("Delete");
+      });
 });
