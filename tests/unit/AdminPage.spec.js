@@ -1,5 +1,5 @@
-import { shallowMount } from "@vue/test-utils";
-import AdminPage from "@/components/AdminPage.vue";
+// import { shallowMount } from "@vue/test-utils";
+// import AdminPage from "@/components/AdminPage.vue";
 
 // const mockStore = {
 //   isAuthenticated: true,
