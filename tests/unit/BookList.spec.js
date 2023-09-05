@@ -65,21 +65,23 @@ describe("BookList.vue", () => {
         expect(wrapper.find("p").text()).toBe("Author 1");
       });
 
-      it("displays the delete button when user is not admin", async () => {
-        const book = {
-          title: "abc",
-          author: "John Doe",
-          id: 1,
-        };
-        const wrapper = shallowMount(BookList, {
-          propsData: { book },
-        });
-        expect(wrapper.find("button").exists()).toBe(false);
-        expect(wrapper.find("button").text()).toBe("");
-
-        await wrapper.find("button").trigger("click");
-
-        expect(wrapper.find("button").exists()).toBe(true);
-        expect(wrapper.find("button").text()).toBe("Delete");
+      
+    
+    it("displays the delete button when user is not admin", async () => {
+      const book = {
+        title: "abc",
+        author: "John Doe",
+        id: 1,
+      };
+      const wrapper = shallowMount(BookList, {
+        propsData: { book },
       });
+      expect(wrapper.find("button").exists()).toBe(false);
+      expect(wrapper.find("button").text()).toBe("");
+
+      await wrapper.find("button").trigger("click");
+
+      expect(wrapper.find("button").exists()).toBe(true);
+      expect(wrapper.find("button").text()).toBe("Delete");
+    });
 });
