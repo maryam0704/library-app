@@ -79,4 +79,40 @@ body {
   margin: 0 20px;
   font-size: 18px;
 }
+
+@media (min-width: 768px) {
+  .navbar {
+    width: 80%;
+    flex-direction: row;
+    font-size: 28px;
+    justify-content: center; 
+  }
+}
+
+
+.nav-link {
+  color: #fff;
+  text-decoration: none;
+  margin: 10px;
+  font-size: 18px;
+  padding: 10px;
+}
+
+@media (min-width: 380px) {
+  .navbar {
+    width: 80%;
+    flex-direction: row; 
+    font-size: 28px; 
+    justify-content: center; 
+  }
+}
+
+
+.nav-link {
+  color: #fff;
+  text-decoration: none;
+  margin: 10px; 
+  font-size: 18px;
+  padding: 10px;
+}
 </style>
