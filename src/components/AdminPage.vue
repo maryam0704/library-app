@@ -44,7 +44,9 @@ export default {
             author: "",
             genre: "",
         });
-     let message = ref("");
+        let message = ref("");
+
+        // i am sending post request to the server to add a new book
         const addBook = async () => {
             try {
                 const response = await fetch(
@@ -90,6 +92,8 @@ export default {
             }
         };
 
+        // using fetch here god knows why 
+        // just in case i want to fetch all the books from the server
         const fetchBooks = async () => {
             try {
                 const response = await fetch(
@@ -125,6 +129,10 @@ export default {
 };
 </script>
 <style scoped>
+
+
+
+
 .authenticated-user {
     font-size: 18px;
     margin-bottom: 10px;
@@ -157,7 +165,7 @@ export default {
 }
 
 .form-input {
-    width: 55%;
+    width: 65%;
     padding: 10px;
     margin: 15px;
     font-size: 25px;
@@ -199,7 +207,50 @@ export default {
 }
 
 .not-admin {
-    font-size: 18px;
+    font-size: 25px;
     margin-top: 20px;
+    text-align: center;
+}
+
+
+
+
+@media (max-width: 480px) {
+    .admin-container {
+        width: 90%; 
+    }
+    
+    .form-input {
+        width: 95%;
+        
+    }
+    
+    .add-button,
+    .logout-button {
+        width: 100%; 
+        margin-top: 15px; 
+        font-size: 16px; 
+    }
+    
+    
+    .authenticated-user,
+    .form-label {
+        font-size: 20px;
+        letter-spacing: 1px;
+    }
+
+    p {
+        font-size: 25px;
+        letter-spacing: 1px;
+        
+    }
+    
+    h1 {
+        font-size: 35px;
+        margin: 10px;
+        padding: 10px;
+        color: #ffffff;
+        background-color: #000000c7;
+    }
 }
 </style>
