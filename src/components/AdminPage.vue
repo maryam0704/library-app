@@ -32,6 +32,7 @@
 
 <script>
 import { useloginStore } from "@/store/loginStore";
+// for reactive variables
 import { ref } from 'vue';
 
 
@@ -46,7 +47,7 @@ export default {
         });
         let message = ref("");
 
-        // i am sending post request to the server to add a new book
+        //trying to sending post request to the server to add a new book
         const addBook = async () => {
             try {
                 const response = await fetch(
