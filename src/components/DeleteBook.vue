@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h2>Delete Book</h2>
+       
         <button @click="deleteBook" v-if="isAdmin">Delete Book</button>
         <div v-if="message">{{ message }}</div>
     </div>
