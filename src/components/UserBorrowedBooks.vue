@@ -113,4 +113,23 @@ export default {
     margin: 15px auto;
    ;
 }
+@media (min-width: 768px) {
+    .borrowed-books {
+        width: 70%; 
+    }
+
+    .book-item {
+        width: 80%; 
+    }
+}
+
+@media (min-width: 480px) {
+    .borrowed-books {
+        width: 70%; 
+    }
+
+    .book-item {
+        width: 80%; 
+    }
+}
 </style>
