@@ -1,11 +1,11 @@
 
 <template>
     <div id="app">
-        <h1>Library App</h1>
+        <!-- <h1>Library App</h1> -->
         <div class="book">
         <div v-for="book in books" :key="book._id" class="books"  >
-            <h2>{{ book.title }}</h2>
-            <p>{{ book.author }}</p>
+            <h2> {{ book.title }}</h2>
+            <p>By: {{ book.author }}</p>
             <p v-if="book.isReserved">Reserved by: {{ book.reservedBy }}</p>
             <p v-else>Available</p>
 
@@ -106,13 +106,15 @@ export default {
 }
 
  .books {
-   font-size: 20px;
-    background-color: #1e1d1d72;
+   font-size: 28px;
+    background-color: #1e1d1d9c;
       border: 2px solid black;
+      border-radius: 25px;
     /* border: 2px solid black; */
     /* background-color: #f9f9f9; */
-     padding: 10px; 
+     padding: 18px; 
     border: 1px solid  
+
 
 } 
 .book{
@@ -125,20 +127,20 @@ export default {
      grid-template-columns: repeat(3, 1fr); 
 }
 /* h1 {
-    font-size: 24px;
+    font-size: 28px;
     margin-bottom: 20px;
-}
+} */
 
-h2 {
+/* h2 {
     font-size: 20px;
     margin: 0;
-}
+} */
 
 p {
     margin: 5px 0;
 }
 
-button {
+/* button {
     background-color: #007bff;
     color: #fff;
     border: none;
@@ -146,7 +148,7 @@ button {
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
-}
+} */
 
 button:hover {
     background-color: #0056b3;
@@ -154,7 +156,7 @@ button:hover {
 
 p.reserved {
     color: #ff0000;
-} */
+} 
 
 .book {
     display: grid;

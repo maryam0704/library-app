@@ -2,8 +2,8 @@
 <template>
     <div>
         <UserList :allUsers="allUsers" @userSelected="loginUser" />
-
-        <h1>Welcome  {{ userDisplayName }} </h1>
+<div class="welcome">
+        <h1>Welcome  {{ userDisplayName }} </h1></div>
         <button @click="fetchBooks">Browse Books</button>
         <BookList v-if="books.length > 0" :books="books" :isUser="true" @update-books="fetchBooks" />
     </div>
@@ -80,11 +80,18 @@ div {
 }
 
 
-
+.welcome{
+    width:30%;
+    margin: 0 auto;
+    background-color: rgba(0, 0, 0, 0.489);
+}
 
 h1 {
-    font-size: 36px;
-    margin-top: 20px;
+    font-size: 4rem;
+    // margin-top: 20px;
+    color: rgb(226, 234, 226);
+  
+  
 }
 
 
@@ -123,5 +130,21 @@ button:hover {
 
 .user-list button:hover {
     background-color: #005a9e;
+}
+
+@media (min-width: 768px) {
+ 
+
+  h1 {
+    font-size: 3rem; /* Increase font size for tablets */
+  }
+}
+
+@media (min-width: 480px) {
+ 
+
+  h1 {
+    font-size: 2.5rem; /* Increase font size for tablets */
+  }
 }
 </style>

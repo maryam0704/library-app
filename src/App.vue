@@ -44,67 +44,37 @@ export default {
 
 
 <style>
-*{
+
+
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   text-decoration: none;
   color: #fff;
-
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 }
+
 body {
   background-image: url('https://e0.pxfuel.com/wallpapers/860/271/desktop-wallpaper-books-library-shelves-lighting-book-library-background-cool-library.jpg');
   background-size: cover;
   background-attachment: fixed;
   color: #fff;
+  margin: 0; 
+  padding: 0; 
 }
+
 
 .navbar {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  background-color: rgba(33, 35, 59, 0.894);
-  width: 50%;
+  grid-template-columns: repeat(3, 1fr); 
+  background-color: rgba(2, 2, 2, 0.474);
+  width: 60%; 
+  font-size: 22px; 
+  padding: 10px;
+  justify-content: center;
+  align-items: center; 
   margin: 0 auto;
-  /* border-radius: 10px; */
-  margin-bottom: 20px;
-  margin-top: 20px;
-  font-size: 33px;
-  padding: 10px;
- 
-}
-
-.nav-link {
-  color: #fff;
-  text-decoration: none;
-  margin: 0 20px;
-  font-size: 18px;
-}
-
-@media (min-width: 768px) {
-  .navbar {
-    width: 80%;
-    flex-direction: row;
-    font-size: 28px;
-    justify-content: center; 
-  }
-}
-
-
-.nav-link {
-  color: #fff;
-  text-decoration: none;
-  margin: 10px;
-  font-size: 18px;
-  padding: 10px;
-}
-
-@media (min-width: 380px) {
-  .navbar {
-    width: 80%;
-    flex-direction: row; 
-    font-size: 28px; 
-    justify-content: center; 
-  }
 }
 
 
@@ -115,4 +85,15 @@ body {
   font-size: 18px;
   padding: 10px;
 }
+
+
+/* @media (min-width: 380px) {
+  .navbar {
+    display: grid;
+     grid-template-columns: repeat(1, 2fr); 
+    font-size: 28px;
+
+  }
+} */
+
 </style>
