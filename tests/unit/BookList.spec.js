@@ -72,6 +72,8 @@ describe("BookList.vue", () => {
         title: "abc",
         author: "John Doe",
         id: 1,
+        isReserved: true,
+        reservedBy: "User 1",
       };
       const wrapper = shallowMount(BookList, {
         propsData: { book },
@@ -83,5 +85,26 @@ describe("BookList.vue", () => {
 
       expect(wrapper.find("button").exists()).toBe(true);
       expect(wrapper.find("button").text()).toBe("Delete");
+    });
+
+
+    it("displays the button when class isReserve is false", async () => {
+      const book = {
+        title: "abc",
+        author: "John Doe",
+        id: 1,
+        isReserved: true,
+        reservedBy: "User 1",
+      };
+      const wrapper = shallowMount(BookList, {
+        propsData: { book },
+      });
+      expect(wrapper.find("button").exists()).toBe(false);
+      expect(wrapper.find("button").text()).toBe("Reserve");
+
+      await wrapper.find("button").trigger("click");
+
+      expect(wrapper.find("button").exists()).toBe(true);
+      expect(wrapper.find("button").text()).toBe("reserved by");
     });
 });
