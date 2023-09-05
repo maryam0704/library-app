@@ -31,6 +31,40 @@ describe("BookList.vue", () => {
     expect(wrapper.text()).toContain("Available");
     
   });
+     
+    it("renders  course title when passed", async () => {
+      const mockData = [
+        { _id: 1, title: "Book 1", author: "Author 1", isReserved: false },
+        {
+          _id: 2,
+          title: "Book 2",
+          author: "Author 2",
+          isReserved: true,
+          reservedBy: "User 1",
+        },
+      ];
+      const wrapper = shallowMount(BookList);
+
+      wrapper.setData({ books: mockData });
+      await wrapper.vm.$nextTick();
+
+      expect(wrapper.find("h2").text()).toBe("Book 1");
+    });
+
+    it("renders course author when passed", async () => {
+      const book = [
+        { _id: 1, title: "Book 1", author: "Author 1", isReserved: false },
+      ];
+      const wrapper = shallowMount(BookList, {
+        propsData: { book },
+      });
+
+      wrapper.setData({ books: book });
+      await wrapper.vm.$nextTick();
+
+      expect(wrapper.find("p").text()).toBe("Author 1");
+    });
+
     
    
 });
