@@ -10,6 +10,9 @@
             <p v-else>Available</p>
 
             <button @click="reserveBook(book._id)" v-if="!book.isReserved">Reserve</button>
+
+      
+
                <DeleteBook :bookId="book._id" @bookDeleted= "handleBookDeleted" />
         </div>
     </div>
@@ -22,6 +25,7 @@ import DeleteBook from '@/components/DeleteBook.vue';
 
 export default {
 
+    
      components: {
         DeleteBook,
     },
@@ -30,6 +34,10 @@ export default {
 
         return {
             books: [],
+           
+                
+          
+             
         };
 
         
@@ -67,9 +75,12 @@ export default {
                     }
                 } catch (error) {
                     console.error("An error occurred while reserving the book:", error);
+
                 }
             } else {
                 console.log("User is not authenticated. Please log in to reserve a book.");
+               
+
             }
             console.log("Reserving book not wokring ");
         },
@@ -77,6 +88,7 @@ export default {
             
             this.fetchBooks();
         },
+        
     },
       
 
@@ -143,4 +155,20 @@ button:hover {
 p.reserved {
     color: #ff0000;
 } */
+
+.book {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(1, 1fr); 
+
+   
+    @media (min-width: 768px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+  
+    @media (min-width: 992px) {
+        grid-template-columns: repeat(3, 1fr); 
+    }
+}
 </style>
